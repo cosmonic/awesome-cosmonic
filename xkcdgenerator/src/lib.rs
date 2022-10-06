@@ -1,5 +1,7 @@
 use wasmbus_rpc::actor::prelude::*;
-use wasmcloud_interface_httpclient::{HttpClient, HttpClientSender};
+use wasmcloud_interface_httpclient::{
+    HttpClient, HttpClientSender, HttpRequest as HttpClientRequest,
+};
 use wasmcloud_interface_httpserver::{HttpRequest, HttpResponse, HttpServer, HttpServerReceiver};
 use wasmcloud_interface_numbergen::random_in_range;
 
@@ -24,10 +26,7 @@ impl HttpServer for XkcdgeneratorActor {
         let xkcd_url = format!("https://xkcd.com/{}/info.0.json", random_num);
 
         let response = HttpClientSender::new()
-            .request(
-                ctx,
-                &wasmcloud_interface_httpclient::HttpRequest::get(&xkcd_url),
-            )
+            .request(ctx, &HttpClientRequest::get(&xkcd_url))
             .await?;
 
         // Deserialize JSON to retrieve comic title and img URL
