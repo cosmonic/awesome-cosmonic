@@ -23,5 +23,6 @@ Then, using the Launch Provider modal, launch both the **HTTP Server (Wormhole)*
 
 ## Watch the build process
 
-Cosmonic developers built this actor live on stream, including the thought process behind the code here and explanations about the components that went into this application.
-//insert
+Cosmonic developers built this actor live on stream, including the thought process behind the code here and explanations about the components that went into this application. Check it out!
+
+[![From Sketch to Scale - Coding an XKCD Comic Generator Live](https://res.cloudinary.com/marcomontalbano/image/upload/v1665164416/video_to_markdown/images/youtube--7OE__0thnK4-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=7OE__0thnK4 "From Sketch to Scale - Coding an XKCD Comic Generator Live")
