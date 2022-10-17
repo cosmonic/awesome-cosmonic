@@ -7,4 +7,4 @@ Simply run `wash build` (you'll need `v0.13.0` or later of [wash](https://github
 
 ## Configuration
 The chat log actor needs a binding to a `wasmcloud:keyvalue` capability provider. In the Cosmonic walkthrough, we use a Redis capability provider with the following configuration values (note you'll need Redis running locally or in a docker image for this):
-* `URL=redis://0.0.0.0:6379`
+* `URL=redis://127.0.0.1:6379`
