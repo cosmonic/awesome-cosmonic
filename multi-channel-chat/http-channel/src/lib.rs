@@ -41,7 +41,7 @@ impl HttpServer for HttpChannelActor {
             (m, p) => {
                 debug!("unexpected method and path: {} - {:?}", m, p);
                 Ok(HttpResponse::not_found())
-            },
+            }
         }
     }
 }

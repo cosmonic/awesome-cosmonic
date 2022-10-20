@@ -41,11 +41,8 @@ impl Outbound for NatsChannelActor {
 #[async_trait]
 impl MessageSubscriber for NatsChannelActor {
     async fn handle_message(&self, ctx: &Context, msg: &SubMessage) -> RpcResult<()> {
-        let reply_topic = msg
-            .reply_to
-            .as_ref()
-            .unwrap_or(&"dedletter".to_string())
-            .to_string();
+        let reply_topic = msg.reply_to.as_deref().unwrap_or("dedletter");
+
         match serde_json::from_slice::<IncomingMessage>(&msg.body) {
             Ok(im) => {
                 let logger = ChatlogSender::to_actor(API_ACTOR);
@@ -71,7 +68,7 @@ impl MessageSubscriber for NatsChannelActor {
                         let _ = pub_ack(ctx, &reply_topic, ack).await;
                     }
                     Err(e) => {
-                        let _ = pub_fail(ctx, &reply_topic, format!("{}", e)).await;
+                        let _ = pub_fail(ctx, &reply_topic, e.to_string()).await;
                     }
                 }
             }
