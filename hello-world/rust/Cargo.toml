@@ -11,7 +11,7 @@ name = "{{to_snake_case project-name}}"
 [dependencies]
 futures = "0.3"
 wasmbus-rpc = "0.11"
-wasmcloud-interface-httpserver = { version = "0.8.1", git = "https://github.com/wasmcloud/interfaces", branch = "feat/simple-http-response" }
+wasmcloud-interface-httpserver = "0.8.2"
 
 [profile.release]
 # Optimize for small code size
