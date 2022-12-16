@@ -15,9 +15,9 @@ impl HttpServer for {{to_pascal_case project-name}}Actor {
         let key = format!("counter:{}", req.path.replace('/', ":"));
 
         let (body, status_code) = match increment_counter(ctx, key).await {
-            Ok(v) => (json!({ "counter": v }).to_string(), 200),
+            Ok(v) => (json!({ "counter": v }), 200),
             // Ensure we properly return database errors as server errors
-            Err(e) => (json!({ "error": e.to_string() }).to_string(), 500),
+            Err(e) => (json!({ "error": e.to_string() }), 500),
         };
 
         HttpResponse::json(body, status_code)
