@@ -1,3 +1,6 @@
 host_config.json
 
 hello-world/rust/Cargo.lock
+hello-world/rust/target/
+kvcounter/rust/Cargo.lock
+kvcounter/rust/target/
