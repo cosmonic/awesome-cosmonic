@@ -3,6 +3,7 @@
 raw = [
   ".github/workflows/build.yml",
   ".github/workflows/release.yml",
+  "build/hello.wasm"
 ]
 exclude = [
   "/.idea"
