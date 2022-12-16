@@ -10,7 +10,6 @@ name = "{{to_snake_case project-name}}"
 
 [dependencies]
 futures = "0.3"
-form_urlencoded = "1.0"
 wasmbus-rpc = "0.11"
 wasmcloud-interface-httpserver = { version = "0.8.1", git = "https://github.com/wasmcloud/interfaces", branch = "feat/simple-http-response" }
 
