@@ -4,5 +4,5 @@ type = "actor"
 version = "0.1.0"
 
 [actor]
-wasm_target = "wasm32-wasi"
+wasm_target = "wasm32-unknown-unknown"
 claims = ["wasmcloud:httpserver", "wasmcloud:keyvalue"]
