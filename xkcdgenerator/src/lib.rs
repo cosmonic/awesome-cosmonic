@@ -51,9 +51,6 @@ impl HttpServer for XkcdgeneratorActor {
             comic.title, comic.img
         );
 
-        Ok(HttpResponse {
-            body: body.as_bytes().to_vec(),
-            ..Default::default()
-        })
+        Ok(HttpResponse::ok(body))
     }
 }
