@@ -3,6 +3,9 @@ use wasmbus_rpc::actor::prelude::*;
 use wasmcloud_interface_httpserver::{HttpRequest, HttpResponse, HttpServer, HttpServerReceiver};
 use wasmcloud_interface_keyvalue::{IncrementRequest, KeyValue, KeyValueSender};
 
+mod ui;
+use ui::get_asset;
+
 #[derive(Debug, Default, Actor, HealthResponder)]
 #[services(Actor, HttpServer)]
 struct {{to_pascal_case project-name}}Actor {}
@@ -11,22 +14,36 @@ struct {{to_pascal_case project-name}}Actor {}
 #[async_trait]
 impl HttpServer for {{to_pascal_case project-name}}Actor {
     async fn handle_request(&self, ctx: &Context, req: &HttpRequest) -> RpcResult<HttpResponse> {
-        // Format key with a friendly separator
-        let key = format!("counter:{}", req.path.replace('/', ":"));
+        let trimmed_path: Vec<&str> = req.path.trim_matches('/').split('/').collect();
 
-        let (body, status_code) = match increment_counter(ctx, key).await {
-            Ok(v) => (json!({ "counter": v }), 200),
-            // Ensure we properly return database errors as server errors
-            Err(e) => (json!({ "error": e.to_string() }), 500),
-        };
-
-        HttpResponse::json(body, status_code)
+        match (req.method.as_ref(), trimmed_path.as_slice()) {
+            ("GET", ["api", "counter"]) => increment_counter(ctx, "default", 1).await,
+            ("GET", ["api", "counter", counter]) => increment_counter(ctx, counter, 1).await,
+            // Any other GET request is interpreted as a static asset request for the UI
+            ("GET", asset_path) => get_asset(asset_path.join("/")),
+            (_, _) => Ok(HttpResponse::not_found()),
+        }
     }
 }
 
-/// Increment the key in the keyvalue store by 1, returning the new value
-async fn increment_counter(ctx: &Context, key: String) -> RpcResult<i32> {
-    Ok(KeyValueSender::new()
-        .increment(ctx, &IncrementRequest { key, value: 1 })
-        .await?)
+/// Increment the `key` in the KeyValue store by `value`
+async fn increment_counter(ctx: &Context, counter: &str, value: i32) -> RpcResult<HttpResponse> {
+    // make friendlier key
+    let key = format!("counter:{}", counter.replace('/', ":"));
+
+    // increment the value in kv and format response as json
+    let (body, status_code) = match KeyValueSender::new()
+        .increment(ctx, &IncrementRequest { key, value })
+        .await
+    {
+        Ok(v) => (json!({ "counter": v }).to_string(), 200),
+        // if we caught an error, return it to client
+        Err(e) => (json!({ "error": e.to_string() }).to_string(), 500),
+    };
+
+    Ok(HttpResponse {
+        body: body.as_bytes().to_vec(),
+        status_code,
+        ..Default::default()
+    })
 }
