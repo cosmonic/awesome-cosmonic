@@ -1,5 +1,5 @@
 # Awesome Cosmonic
-Awesome projects and source code for the Things To Build section on https://cosmonic.com/docs/category/things-to-build.
+Awesome projects and source code for the [Things To Build section](https://cosmonic.com/docs/category/things-to-build).
 
 | Deployment  | Link | Topology |
 | ------------- | ------------- | ------------- |
