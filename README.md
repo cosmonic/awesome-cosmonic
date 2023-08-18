@@ -1,5 +1,5 @@
 # Awesome Cosmonic
-Awesome projects and source code for the [Things To Build section](https://cosmonic.com/docs/category/things-to-build).
+Awesome projects and source code for the [Things To Build](https://cosmonic.com/docs/category/things-to-build) section on Cosmonic.
 
 | Deployment  | Link | Topology |
 | ------------- | ------------- | ------------- |
@@ -14,7 +14,7 @@ Some manifests require multiple Cosmonic hosts connected to your Constellation. 
 ```bash -c "$(curl -fsSL https://cosmonic.sh/install.sh)"```
 
 ## Host Labels
-Just like Kubernetes Cosmonic uses labels as a powerful mechanism for deployments.  There are a handful of labels that are automatically defined by default for you depending on where the host is executing:
+Just like Kubernetes, Cosmonic can leverage labels as a mechanism for defining and configuring application topology and deployments.  There are a handful of labels that are automatically defined by default for you depending on where the host is executing:
 
 | Label  | Hosts | Definition |
 | ------------- | ------------- | ------------- |
