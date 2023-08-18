@@ -1,0 +1,58 @@
+# This is a full example of how to run the xkcd actor exposed with an HTTP server on Cosmonic.
+# This example leverages wadm: https://github.com/wasmCloud/wadm/tree/main/wadm.
+#
+# All components are started on Cosmonic.  See other examples for different scenarios.
+
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  annotations:
+    description: wasmCloud XKCD Example
+    version: v1-cosmonic
+  name: xkcd
+spec:
+  components:
+    - name: xkcd
+      properties:
+        image: wasmcloud.azurecr.io/xkcd:0.1.7
+      traits:
+        - properties:
+            replicas: 1
+            spread:
+              - name: oncosmonic
+                requirements:
+                  cosmonic_managed: 'true'
+          type: spreadscaler
+        - properties:
+            target: httpserver
+          type: linkdef
+        - properties:
+            target: httpclient
+          type: linkdef
+      type: actor
+    - name: httpserver
+      properties:
+        contract: wasmcloud:httpserver
+        image: cosmonic.azurecr.io/httpserver_wormhole:0.5.4
+      traits:
+        - properties:
+            replicas: 1
+            spread:
+              - name: oncosmonic
+                requirements:
+                  cosmonic_managed: 'true'
+          type: spreadscaler
+      type: capability
+    - name: httpclient
+      properties:
+        contract: wasmcloud:httpclient
+        image: wasmcloud.azurecr.io/httpclient:0.7.0
+      traits:
+        - properties:
+            replicas: 1
+            spread:
+              - name: oncosmonic
+                requirements:
+                  cosmonic_managed: 'true'
+          type: spreadscaler
+      type: capability
