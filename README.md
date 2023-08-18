@@ -1,6 +1,12 @@
 # Awesome Cosmonic
 Awesome projects and source code for the Things To Build section on https://cosmonic.com/docs/category/things-to-build.
 
+| Deployment  | Link | Topology |
+| ------------- | ------------- | ------------- |
+| XKCD on Cosmonic  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-cosmonic.wadm) | This example will deploy the XKCD actor, HTTP Client Provider, and HTTP Server Provider all on Cosmonic.  |
+| XKCD on Stargate  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-stargate.wadm) | This example will deploy the XKCD actor & HTTP Client Provider on a remote startgate node, and the HTTP Server Provider on Cosmonic. In order for this manifest to work you will need at least one stargate host deployed.  |
+
+# How does it work?
 One of the powerful things about Cosmonic is that your basic application architecture can be deployed to dramatically different application topologies all without changing or modifying your architecture.  In the simple examples below we use [Open Application Manifest WADM Manifests](https://github.com/wasmCloud/wadm) to automatically deploy applications to Cosmonic.
 
 Some manifests require multiple Cosmonic hosts connected to your Constellation. Please follow the [Cosmonic Getting Started Guide](https://cosmonic.com/docs/user_guide/cli/getting_started) to deploy a host or simply:
@@ -8,12 +14,7 @@ Some manifests require multiple Cosmonic hosts connected to your Constellation. 
 ```bash -c "$(curl -fsSL https://cosmonic.sh/install.sh)"```
 
 
-| Deployment  | Link | Topology |
-| ------------- | ------------- | ------------- |
-| XKCD on Cosmonic  | [![Deploy on Cosmonic](https://cosmonic.com/badge/deploy.svg)](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-cosmonic.wadm) | This example will deploy the XKCD actor, HTTP Client Provider, and HTTP Server Provider all on Cosmonic.  |
-| XKCD on Stargate  | [![Deploy on Cosmonic](https://cosmonic.com/badge/deploy.svg \| width=200px)](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-stargate.wadm) | This example will deploy the XKCD actor & HTTP Client Provider on a remote startgate node, and the HTTP Server Provider on Cosmonic. In order for this manifest to work you will need at least one stargate host deployed.  |
-| XKCD on Stargate  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="200"](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-stargate.wadm) | This example will deploy the XKCD actor & HTTP Client Provider on a remote startgate node, and the HTTP Server Provider on Cosmonic. In order for this manifest to work you will need at least one stargate host deployed.  |
-
+## Application Version Control
 Using the above manifests you can deploy multiple versions of your application and easily switch between different deployment topologies. Many of the applications have the same name, such as ```xkcd``` and different ```versions```. On Cosmonic, find the controls under Applications --> App --> Versions:
 
 ![Cosmonic Applications Version Control Screen Shot](./img/cosmonic-applications-versions.png)
