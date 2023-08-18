@@ -13,6 +13,20 @@ Some manifests require multiple Cosmonic hosts connected to your Constellation. 
 
 ```bash -c "$(curl -fsSL https://cosmonic.sh/install.sh)"```
 
+## Host Labels
+Just like Kubernetes Cosmonic uses labels as a powerful mechanism for deployments.  There are a handful of labels that are automatically defined by default for you depending on where the host is executing:
+
+| Label  | Hosts | Definition |
+| ------------- | ------------- | ------------- |
+| `hostcore.arch=aarch64` | ALL | CPU Architecture |
+| `hostcore.os=linux` | ALL | Host OS |
+| `hostcore.osfamily=unix` | ALL | Host OS Family |
+| `cloud=cosmonic` | Cosmonic | Hosts running inside of Cosmonic Cloud |
+| `cosmonic_managed=true` | Cosmonic | Hosts managed by Cosmonic |
+| `stargate=true` | Remote Only | A label automatically applied to hosts remotely attached to a Constellation |
+
+You can define your own labels and leverage them to _manage_ your application.  You can schedule an application to run on specific nodes and on specific node types. Component providers for things like databases can be scheduled to run near their provider or you can achieve higher reliability, availability, or performance simply by updating your application manifest.  Constellations are self-forming, self-healing, and allow for the automatic discovery of capabilities.
+
 
 ## Application Version Control
 Using the above manifests you can deploy multiple versions of your application and easily switch between different deployment topologies. Many of the applications have the same name, such as ```xkcd``` and different ```versions```. On Cosmonic, find the controls under Applications --> App --> Versions:
