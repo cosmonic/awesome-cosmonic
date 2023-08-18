@@ -21,7 +21,6 @@ Just like Kubernetes, Cosmonic can leverage labels as a mechanism for defining a
 | `hostcore.arch=aarch64` | ALL | CPU Architecture |
 | `hostcore.os=linux` | ALL | Host OS |
 | `hostcore.osfamily=unix` | ALL | Host OS Family |
-| `cloud=cosmonic` | Cosmonic | Hosts running inside of Cosmonic Cloud |
 | `cosmonic_managed=true` | Cosmonic | Hosts managed by Cosmonic |
 | `stargate=true` | Remote Only | A label automatically applied to hosts remotely attached to a Constellation |
 
