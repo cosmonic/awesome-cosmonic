@@ -53,7 +53,7 @@ spec:
         - properties:
             replicas: 1
             spread:
-              - name: onthelake
+              - name: stargate
                 requirements:
 #                  hostcore.os: macos
                   stargate: 'true'
