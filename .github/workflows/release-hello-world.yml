@@ -22,7 +22,10 @@ jobs:
         run: rustup target add wasm32-unknown-unknown
         working-directory: ${{ env.working-directory }}/rust
       - name: Install cosmo
-        run: bash -c "$(curl -fsSL https://cosmonic.sh/install.sh)"
+        run: |
+            bash -c "$(curl -fsSL https://cosmonic.sh/install.sh)"
+            echo "export PATH=\"/home/runner/.cosmo/bin:\${PATH}\"" >> "${HOME}/.bashrc" && source "${HOME}/.bashrc" >> $GITHUB_ENV
+        shell: bash
       # Once you've written unit tests for your actor, you can uncomment
       # the two lines below to automatically run tests
       # - name: Test actor
@@ -37,6 +40,7 @@ jobs:
             mkdir -p ${{ env.working-directory }}/rust/build
             cp ${{ env.working-directory }}/hello/build/hello.wasm ${{ env.working-directory }}/rust/build/hello.wasm
             rm -rf hello
+        shell: bash
         working-directory: ${{ env.working-directory }}
       - name: Upload signed actor to GH Actions
         uses: actions/upload-artifact@v2
