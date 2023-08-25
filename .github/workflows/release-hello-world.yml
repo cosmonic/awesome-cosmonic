@@ -30,7 +30,7 @@ jobs:
           WASH_ISSUER_KEY: ${{ env.WASH_ISSUER_KEY }}
           WASH_SUBJECT_KEY: ${{ env.WASH_SUBJECT_KEY }}
         run: |
-            wash new actor --path rust hello
+            wash new actor --path ${{ env.working-directory }}/rust ${{ env.working-directory }}/hello
             cd hello && wash build
             mkdir -p ${{ env.working-directory }}/rust/build
             cp ${{ env.working-directory }}/hello/build/hello.wasm ${{ env.working-directory }}/rust/build/hello.wasm
