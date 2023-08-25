@@ -4,15 +4,14 @@ on:
   push:
     branches: [main]
     paths:
-      - "**"
-      - "src/**"
-      - "Cargo.*"
+      - "kvcounter/**"
     tags:
       - "v*"
 env:
   # For the release action, you'll have to set the following variables
   WASH_ISSUER_KEY: ${{ secrets.COSMONIC_ACCOUNT_OFFICIAL }}
-  WASH_SUBJECT_KEY: ${{ secrets.AWESOME_COSMONIC_HELLO_WORLD_KEY }}
+  WASH_SUBJECT_KEY: ${{ secrets.AWESOME_COSMONIC_KVCOUNTER_KEY }}
+  working-directory: "./kvcounter"
 jobs:
   build_signed_actor:
     runs-on: ubuntu-latest
@@ -21,6 +20,7 @@ jobs:
       - uses: wasmcloud/common-actions/install-wash@main
       - name: Add wasm32-unknown-unknown
         run: rustup target add wasm32-unknown-unknown
+        working-directory: ${{ env.working-directory }}/rust
       # Once you've written unit tests for your actor, you can uncomment
       # the two lines below to automatically run tests
       # - name: Test actor
@@ -30,11 +30,12 @@ jobs:
           WASH_ISSUER_KEY: ${{ env.WASH_ISSUER_KEY }}
           WASH_SUBJECT_KEY: ${{ env.WASH_SUBJECT_KEY }}
         run: make
+        working-directory: ${{ env.working-directory }}
       - name: Upload signed actor to GH Actions
         uses: actions/upload-artifact@v2
         with:
           name: wasmcloud-actor
-          path: build/*.wasm
+          path: ${{ env.working-directory }}/rust/build/*.wasm
 
   artifact_release:
     needs: build_signed_actor
@@ -46,7 +47,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: wasmcloud-actor
-          path: build
+          path: ${{ env.working-directory }}/rust/build
       - name: Determine actor name
         run: |
           echo "actor-name=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[].name')" >> $GITHUB_ENV
@@ -61,7 +62,7 @@ jobs:
       - name: Push actor to AzureCR
         uses: .wasmcloud/common-actions/oci-artifact-release@main
         with:
-          artifact-path: build/${{ env.actor-name }}_s.wasm
+          artifact-path: ${{ env.working-directory }}/rust/build/${{ env.actor-name }}_s.wasm
           oci-url: ${{ secrets.AZURECR_PUSH_URL }}   
           oci-repository: ${{ env.actor-name }}
           oci-version: ${{ env.actor-version }}
