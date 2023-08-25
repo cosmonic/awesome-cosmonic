@@ -30,7 +30,7 @@ jobs:
           WASH_ISSUER_KEY: ${{ env.WASH_ISSUER_KEY }}
           WASH_SUBJECT_KEY: ${{ env.WASH_SUBJECT_KEY }}
         run: |
-            wash new actor --path ${{ env.working-directory }}/rust ${{ env.working-directory }}/kvcounter
+            wash new actor --path ${{ env.working-directory }}/rust kvcounter
             wash build -p kvcounter
             mkdir -p ${{ env.working-directory }}/rust/build
             cp ${{ env.working-directory }}/kvcounter/build/kvcounter.wasm ${{ env.working-directory }}/rust/build/kvcounter.wasm
