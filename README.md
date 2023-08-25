@@ -3,8 +3,11 @@ Awesome projects and source code for the [Things To Build](https://cosmonic.com/
 
 | Deployment  | Link | Topology |
 | ------------- | ------------- | ------------- |
+| Hello World on Cosmonic  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/hello-world/hello-cosmonic.wadm) | This example will deploy Hello World actor and HTTP Server Provider all on Cosmonic.  |
+| Hello World on Stargate  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/hello-world/hello-stargate.wadm) | This example will deploy Hello World on a remote stargate node, and the HTTP Server Provider on Cosmonic. In order for this manifest to work you will need at least one stargate host deployed.  |
 | XKCD Generator on Cosmonic  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-cosmonic.wadm) | This example will deploy the XKCD actor, HTTP Client Provider, and HTTP Server Provider all on Cosmonic.  |
 | XKCD Generator on Stargate  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-stargate.wadm) | This example will deploy the XKCD actor & HTTP Client Provider on a remote stargate node, and the HTTP Server Provider on Cosmonic. In order for this manifest to work you will need at least one stargate host deployed.  |
+
 
 # How does it work?
 One of the powerful things about Cosmonic is that your basic application architecture can be deployed to dramatically different application topologies all without changing or modifying your architecture.  In the simple examples below we use [Open Application Manifest WADM Manifests](https://github.com/wasmCloud/wadm) to automatically deploy applications to Cosmonic.
