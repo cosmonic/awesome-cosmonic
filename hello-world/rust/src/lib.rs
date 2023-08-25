@@ -17,7 +17,7 @@ Check out our Things to Build guide on an XKCD image generator:
 https://cosmonic.com/docs/to-build/image-generator
 "#;
 
-        HttpResponse::ok(message)
+        Ok(HttpResponse::ok(message))
     }
 }
 

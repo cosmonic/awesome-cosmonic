@@ -1,4 +1,4 @@
-name: Release to AzureCR
+name: Release Hello World to AzureCR
 on:
   workflow_dispatch:
   push:
