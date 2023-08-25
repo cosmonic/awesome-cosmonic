@@ -1,4 +1,4 @@
-name: Release to GHCR
+name: Release to AzureCR
 on:
   workflow_dispatch:
   push:
