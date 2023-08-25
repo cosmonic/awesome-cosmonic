@@ -38,7 +38,7 @@ jobs:
         shell: bash
         working-directory: ${{ env.working-directory }}
       - name: Upload signed actor to GH Actions
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: wasmcloud-actor
           path: ${{ env.working-directory }}/rust/build/*.wasm
@@ -50,7 +50,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: wasmcloud/common-actions/install-wash@main
       - name: Download signed actor
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: wasmcloud-actor
           path: ${{ env.working-directory }}/rust/build
