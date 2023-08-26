@@ -65,7 +65,7 @@ jobs:
         run: |
           echo "actor-version=latest" >> $GITHUB_ENV
       - name: Push actor to AzureCR
-        uses: .wasmcloud/common-actions/oci-artifact-release@main
+        uses: wasmcloud/common-actions/oci-artifact-release@main
         with:
           artifact-path: ${{ env.working-directory }}/rust/build/${{ env.actor-name }}_s.wasm
           oci-url: ${{ secrets.AZURECR_PUSH_URL }}   
