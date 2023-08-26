@@ -9,7 +9,7 @@
 apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
-  name: {{project-name}}
+  name: kvcounter
   annotations:
     version: v0.0.1
     description: "wasmCloud Key Value Counter Example"
@@ -18,7 +18,7 @@ spec:
     - name: kvcounter
       type: actor
       properties:
-        image: ghcr.io/{{github.REPOSITORY}}:{{project-name}}:0.1.0
+        image: ghcr.io/{{github.REPOSITORY}}:kvcounter:0.1.0
       traits:
         - type: spreadscaler
           properties:

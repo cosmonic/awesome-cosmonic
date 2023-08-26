@@ -1,4 +1,4 @@
-name = "{{project-name}}"
+name = "helloworld"
 language = "rust"
 type = "actor"
 version = "0.1.0"
