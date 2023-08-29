@@ -20,4 +20,3 @@ https://cosmonic.com/docs/to-build/image-generator
         Ok(HttpResponse::ok(message))
     }
 }
-

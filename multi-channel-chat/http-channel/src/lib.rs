@@ -21,7 +21,7 @@ struct HttpChannelActor {}
 
 #[async_trait]
 impl Outbound for HttpChannelActor {
-    async fn publish_message(&self, ctx: &Context, arg: &OutboundMessage) -> RpcResult<bool> {
+    async fn publish_message(&self, _ctx: &Context, _arg: &OutboundMessage) -> RpcResult<bool> {
         // This is absorbed silently because the HTTP channel does not currently expose
         // any kind of realtime subscription. Perhaps in the future a websocket subscription
         // could be used?
@@ -96,7 +96,7 @@ impl From<chatlog::WriteMessageResponse> for HttpResponse {
         if source.accepted {
             HttpResponse::default()
         } else {
-            HttpResponse::internal_server_error(source.reason.unwrap_or_else(|| "".to_string()))
+            HttpResponse::internal_server_error(source.reason.unwrap_or_default())
         }
     }
 }
