@@ -6,7 +6,7 @@ on:
     paths:
       - "kvcounter/**"
     tags:
-      - "v*"
+      - "kvcounter-v*"
 env:
   # For the release action, you'll have to set the following variables
   WASH_ISSUER_KEY: ${{ secrets.COSMONIC_ACCOUNT_OFFICIAL }}
