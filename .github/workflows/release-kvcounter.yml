@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: wasmcloud-actor
-          path: ${{ env.working-directory }}/hello
+          path: ${{ env.working-directory }}/kvcounter
 
   artifact_release:
     needs: build_signed_actor
@@ -50,11 +50,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: wasmcloud-actor
-          path: ${{ env.working-directory }}
+          path: ${{ env.working-directory }}/kvcounter
       - name: Determine actor name
         run: |
+          find *
           echo "actor-name=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[].name')" >> $GITHUB_ENV
-        working-directory: ${{ env.working-directory }}/kvcounter
+        working-directory: ${{ env.working-directory }}
       - name: Determine actor version
         if: startswith(github.ref, 'refs/tags/') # Only run on tag push
         run: |
