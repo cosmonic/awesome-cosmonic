@@ -38,16 +38,16 @@ jobs:
         run: rustup target add wasm32-unknown-unknown
 
       - name: Set wash subject key (api-gateway)
-        if: ${{ matrix.working-directory == 'multi-channel-chat/api-gateway' }}
+        if: ${{ matrix.artifact-name == 'api-gateway' }}
         run: echo "WASH_SUBJECT_KEY=${{ secrets.AWESOME_COSMONIC_MCC_APIGATEWAY_KEY }}" > $GITHUB_ENV
       - name: Set wash subject key (chatlog)
-        if: ${{ matrix.working-directory == 'multi-channel-chat/chatlog' }}
+        if: ${{ matrix.artifact-name == 'chatlog' }}
         run: echo "WASH_SUBJECT_KEY=${{ secrets.AWESOME_COSMONIC_MCC_CHATLOG_KEY }}" > $GITHUB_ENV
       - name: Set wash subject key (http-channel)
-        if: ${{ matrix.working-directory == 'multi-channel-chat/http-channel' }}
+        if: ${{ matrix.artifact-name == 'http-channel' }}
         run: echo "WASH_SUBJECT_KEY=${{ secrets.AWESOME_COSMONIC_MCC_HTTPCHANNEL_KEY }}" > $GITHUB_ENV
       - name: Set wash subject key (nats-channel)
-        if: ${{ matrix.working-directory == 'multi-channel-chat/nats-channel' }}
+        if: ${{ matrix.artifact-name == 'nats-channel' }}
         run: echo "WASH_SUBJECT_KEY=${{ secrets.AWESOME_COSMONIC_MCC_NATSCHANNEL_KEY }}" > $GITHUB_ENV
 
       - name: Build and sign wasmCloud actor

@@ -3,11 +3,11 @@ use wasmcloud_interface_httpserver::{HttpRequest, HttpResponse, HttpServer, Http
 
 #[derive(Debug, Default, Actor, HealthResponder)]
 #[services(Actor, HttpServer)]
-struct HelloWorldActor {}
+struct {{to_pascal_case project-name}}Actor {}
 
 /// Implementation of the HTTP server capability
 #[async_trait]
-impl HttpServer for HelloWorldActor {
+impl HttpServer for {{to_pascal_case project-name}}Actor {
     async fn handle_request(&self, _ctx: &Context, _req: &HttpRequest) -> RpcResult<HttpResponse> {
         let message: &str = r#"Hello, World, from Cosmonic!
 

@@ -1,4 +1,4 @@
-name = "kvcounter"
+name = "{{project-name}}"
 language = "rust"
 type = "actor"
 version = "0.1.0"

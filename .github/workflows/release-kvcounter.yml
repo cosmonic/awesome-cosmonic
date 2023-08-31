@@ -6,7 +6,7 @@ on:
     paths:
       - "kvcounter/**"
     tags:
-      - "kvcounter-v*"
+      - "v*"
 env:
   # For the release action, you'll have to set the following variables
   WASH_ISSUER_KEY: ${{ secrets.COSMONIC_ACCOUNT_OFFICIAL }}
@@ -29,9 +29,7 @@ jobs:
         env:
           WASH_ISSUER_KEY: ${{ env.WASH_ISSUER_KEY }}
           WASH_SUBJECT_KEY: ${{ env.WASH_SUBJECT_KEY }}
-        run: |
-            wash new actor --path rust kvcounter
-            wash build -p kvcounter
+        run: make
         shell: bash
         working-directory: ${{ env.working-directory }}
       - name: Upload signed actor to GH Actions

@@ -8,11 +8,11 @@ use ui::get_asset;
 
 #[derive(Debug, Default, Actor, HealthResponder)]
 #[services(Actor, HttpServer)]
-struct KvCounterActor {}
+struct {{to_pascal_case project-name}}Actor {}
 
 /// Implementation of HttpServer trait methods
 #[async_trait]
-impl HttpServer for KvCounterActor {
+impl HttpServer for {{to_pascal_case project-name}}Actor {
     async fn handle_request(&self, ctx: &Context, req: &HttpRequest) -> RpcResult<HttpResponse> {
         let trimmed_path: Vec<&str> = req.path.trim_matches('/').split('/').collect();
 
