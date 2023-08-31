@@ -6,7 +6,7 @@ edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
-name = "helloworld"
+name = "{{to_snake_case project-name}}"
 
 [dependencies]
 futures = "0.3"
