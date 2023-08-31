@@ -41,8 +41,6 @@ jobs:
         with:
           name: wasmcloud-actor
           path: ${{ env.working-directory }}/rust/build/*.wasm
-      - name: Remove project
-        run: rm -rf ${{ env.working-directory }}/hello
 
   artifact_release:
     needs: build_signed_actor
@@ -58,17 +56,17 @@ jobs:
       - name: Determine actor name
         run: |
           echo "actor-name=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[].name')" >> $GITHUB_ENV
-        working-directory: ${{ env.working-directory }}/rust
+        working-directory: ${{ env.working-directory }}/hello
       - name: Determine actor version
         if: startswith(github.ref, 'refs/tags/') # Only run on tag push
         run: |
           echo "actor-version=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[].version')" >> $GITHUB_ENV
-        working-directory: ${{ env.working-directory }}/rust
+        working-directory: ${{ env.working-directory }}/hello
       - name: Determine actor version (main)
         if: ${{ !startswith(github.ref, 'refs/tags/') }}
         run: |
           echo "actor-version=latest" >> $GITHUB_ENV
-        working-directory: ${{ env.working-directory }}/rust
+        working-directory: ${{ env.working-directory }}/hello
       - name: Push actor to AzureCR
         uses: wasmcloud/common-actions/oci-artifact-release@main
         with:
