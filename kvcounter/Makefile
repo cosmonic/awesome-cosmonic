@@ -1,8 +1,8 @@
 # Contains some helper utilities for updating projects
 
 update-kvcounter: ## Generates a new kvcounter project from rust, builds, and copies the compiled file to rust/build
-	cosmo new actor --path rust kvcounter
-	cosmo build -p kvcounter
+	wash new actor --path rust kvcounter
+	wash build -p kvcounter
 	mkdir -p ./rust/build
 	cp kvcounter/build/kvcounter.wasm ./rust/build/kvcounter.wasm
 	rm -rf kvcounter

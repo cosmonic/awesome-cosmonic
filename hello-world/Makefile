@@ -1,8 +1,8 @@
 # Contains some helper utilities for updating projects
 
 update-hello: ## Generates a new hello project from rust, builds, and copies the compiled file to rust/build
-	cosmo new actor --path rust hello
-	cd hello && cosmo build
+	wash new actor --path rust hello
+	cd hello && wash build
 	mkdir -p ./rust/build
 	cp hello/build/hello.wasm ./rust/build/hello.wasm
 	rm -rf hello
