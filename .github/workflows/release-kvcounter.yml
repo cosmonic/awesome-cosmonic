@@ -33,6 +33,8 @@ jobs:
           wash new actor --path rust kvcounter
           wash build -p kvcounter
           rm -rf kvcounter/target
+          tar -cvf kvcounter.tar kvcounter
+          rm -rf kvcounter
         shell: bash
         working-directory: ${{ env.working-directory }}
       - name: Upload signed actor to GH Actions
@@ -51,10 +53,15 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: wasmcloud-actor
-          path: ${{ env.working-directory }}/kvcounter
+          path: ${{ env.working-directory }}
+      - name: Extract files from tar file
+        run: |
+          mkdir -p ${{ env.working-directory }}/kvcounter
+          tar -xvf kvcounter.tar -C ${{ env.working-directory }}/kvcounter
+        shell: bash
+        working-directory: ${{ env.working-directory }}
       - name: Determine actor name
         run: |
-          find *
           echo "actor-name=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[].name')" >> $GITHUB_ENV
         working-directory: ${{ env.working-directory }}/kvcounter
       - name: Determine actor version

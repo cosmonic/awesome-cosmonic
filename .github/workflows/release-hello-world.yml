@@ -33,13 +33,15 @@ jobs:
           wash new actor --path rust hello
           wash build -p hello
           rm -rf hello/target
+          tar -cvf hello.tar hello
+          rm -rf hello
         shell: bash
         working-directory: ${{ env.working-directory }}
       - name: Upload signed actor to GH Actions
         uses: actions/upload-artifact@v3
         with:
           name: wasmcloud-actor
-          path: ${{ env.working-directory }}/hello
+          path: ${{ env.working-directory }}/hello.tar
 
   artifact_release:
     needs: build_signed_actor
@@ -51,10 +53,15 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: wasmcloud-actor
-          path: ${{ env.working-directory }}/hello
+          path: ${{ env.working-directory }}
+      - name: Extract files from tar file
+        run: |
+          mkdir -p ${{ env.working-directory }}/hello
+          tar -xvf hello.tar -C ${{ env.working-directory }}/hello
+        shell: bash
+        working-directory: ${{ env.working-directory }}
       - name: Determine actor name
         run: |
-          find *
           echo "actor-name=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[].name')" >> $GITHUB_ENV
         working-directory: ${{ env.working-directory }}/hello
       - name: Determine actor version
