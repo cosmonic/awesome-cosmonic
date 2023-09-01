@@ -6,7 +6,7 @@ on:
     paths:
       - "hello-world/**"
     tags:
-      - "v*"
+      - "hello-world-v*"
 env:
   # For the release action, you'll have to set the following variables
   WASH_ISSUER_KEY: ${{ secrets.COSMONIC_ACCOUNT_OFFICIAL }}
@@ -60,7 +60,6 @@ jobs:
         working-directory: ${{ env.working-directory }}
       - name: Determine actor name
         run: |
-          find *
           echo "actor-name=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[].name')" >> $GITHUB_ENV
         working-directory: ${{ env.working-directory }}/hello
       - name: Determine actor version
