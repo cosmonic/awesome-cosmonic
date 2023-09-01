@@ -65,15 +65,15 @@ impl MessageSubscriber for NatsChannelActor {
                             accepted: resp.accepted,
                             reason: resp.reason,
                         };
-                        let _ = pub_ack(ctx, &reply_topic, ack).await;
+                        let _ = pub_ack(ctx, reply_topic, ack).await;
                     }
                     Err(e) => {
-                        let _ = pub_fail(ctx, &reply_topic, e.to_string()).await;
+                        let _ = pub_fail(ctx, reply_topic, e.to_string()).await;
                     }
                 }
             }
             Err(_) => {
-                let _ = pub_fail(ctx, &reply_topic, "Bad Request".to_string()).await;
+                let _ = pub_fail(ctx, reply_topic, "Bad Request".to_string()).await;
             }
         }
         Ok(())

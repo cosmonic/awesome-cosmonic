@@ -1,7 +1,6 @@
 use chatlog::*;
 use outbound::{Outbound, OutboundMessage, OutboundSender};
 use wasmbus_rpc::actor::prelude::*;
-use wasmcloud_interface_logging::error;
 
 #[allow(dead_code)]
 mod chatlog;
@@ -9,7 +8,7 @@ mod chatlog;
 #[allow(dead_code)]
 mod outbound;
 
-const CHATLOG_ACTOR:&str = "mcchat/chatlog";
+const CHATLOG_ACTOR: &str = "mcchat/chatlog";
 
 #[derive(Debug, Default, Actor, HealthResponder)]
 #[services(Actor, Chatlog)]
@@ -51,7 +50,7 @@ impl Chatlog for ApiGatewayActor {
 
     async fn get_messages(&self, ctx: &Context) -> RpcResult<MessagesList> {
         let chatlog = ChatlogSender::to_actor(CHATLOG_ACTOR);
-        
+
         chatlog.get_messages(ctx).await
     }
 }
