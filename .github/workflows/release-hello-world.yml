@@ -47,7 +47,6 @@ jobs:
     needs: build_signed_actor
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - uses: wasmcloud/common-actions/install-wash@main
       - name: Download signed actor
         uses: actions/download-artifact@v3

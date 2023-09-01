@@ -26,8 +26,3 @@ jobs:
           rustup component add clippy
           cargo clippy
         working-directory: ${{ env.working-directory }}
-      # Once you've written unit tests for your actor, you can uncomment
-      # the two lines below to automatically run tests
-      # - name: Test actor
-      #   run: cargo test --target x86_64-unknown-linux-gnu -- --nocapture
-      #   working-directory: ${{ env.working-directory }}
