@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: wasmcloud-actor
-          path: ${{ env.working-directory }}/kvcounter
+          path: ${{ env.working-directory }}/kvcounter.tar
 
   artifact_release:
     needs: build_signed_actor
@@ -55,9 +55,7 @@ jobs:
           name: wasmcloud-actor
           path: ${{ env.working-directory }}
       - name: Extract files from tar file
-        run: |
-          mkdir -p ${{ env.working-directory }}/kvcounter
-          tar -xvf kvcounter.tar -C ${{ env.working-directory }}/kvcounter
+        run: tar -xvf kvcounter.tar
         shell: bash
         working-directory: ${{ env.working-directory }}
       - name: Determine actor name
