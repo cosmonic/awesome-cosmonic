@@ -5,12 +5,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        wasmcloudGreen: {
-          light: '#493CAE',
-          dark: '#261F5B'
+        cosmonicPurple: {
+          light: '#8177c7',
+          dark: '#685BC7'
         },
-        wasmcloudGray: '#768693',
-        goldenCream: 'rgba(246, 215, 116, 0.4)'
+        cosmonicGray: '#768692',
       }
     },
   },

@@ -54,16 +54,16 @@ function App() {
             id="bucket"
             name="bucket"
             placeholder="Enter a bucket name"
-            className="mx-auto px-2 py-1.5 text-center w-56 max-w-full text-wasmcloudGray rounded-md border border-wasmcloudGreen-light"
+            className="mx-auto px-2 py-1.5 text-center w-56 max-w-full text-cosmonicGray rounded-md border border-cosmonicPurple-light"
           />
           <button
             type="submit"
-            className="bg-wasmcloudGreen-light w-56 max-w-full rounded-md hover:bg-wasmcloudGreen-dark text-white font-bold py-2 px-4 my-auto mx-auto"
+            className="bg-cosmonicPurple-light w-56 max-w-full rounded-md hover:bg-cosmonicPurple-dark text-white font-bold py-2 px-4 my-auto mx-auto"
           >
             Increment
           </button>
         </form>
-        <h2 className="text-7xl mt-5 mx-auto font-bolder text-wasmcloudGreen-light">
+        <h2 className="text-7xl mt-5 mx-auto font-bolder text-cosmonicPurple-light">
           {count}
         </h2>
       </div>
