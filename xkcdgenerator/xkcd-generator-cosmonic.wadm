@@ -8,13 +8,13 @@ kind: Application
 metadata:
   annotations:
     description: wasmCloud XKCD Example
-    version: v1-cosmonic
+    version: v1.1-cosmonic-xkcd
   name: xkcd
 spec:
   components:
     - name: xkcd
       properties:
-        image: wasmcloud.azurecr.io/xkcd:0.1.7
+        image: ghcr.io/liamrandall/xkcd:0.3.0.5
       traits:
         - properties:
             replicas: 1
