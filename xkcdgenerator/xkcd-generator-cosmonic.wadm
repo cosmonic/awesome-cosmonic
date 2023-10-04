@@ -1,25 +1,41 @@
-# This is a full example of how to run the xkcd actor exposed with an HTTP server on Cosmonic.
-# This example leverages wadm: https://github.com/wasmCloud/wadm/tree/main/wadm.
-#
-# All components are started on Cosmonic.  See other examples for different scenarios.
+# Cosmonic PaaS lets you orchestrate WebAssembly Components on any cloud or edge using CNCF wasmCloud.
 # 
+# The app you are about to deploy:
+# ┌─────────────────────────────────────────────────────────────────────┐
+# │                                                                     │
+# │   Hosted on Cosmonic                                                │
+# │   ( Your Constellation)                             ┌───────────┐   │
+# │                                                     │   Web     │   │
+# │                          ┌────────────────┐◄─────   │  Browser  │   │
+# │                      ┌───┤  HTTP Server   │         │           │   │
+# │                      │   │ Wasm Component ├─────►   │   /\_/\   │   │
+# │  ┌─────────────────┐ │   └────────────────┘         │  ( o.o )  │   │
+# │  │    XKCD App     ├─┤                              │   > ^ <   │   │
+# │  │  ( Your Code )  │ │   ┌────────────────┐         └───────────┘   │
+# │  └─────────────────┘ └───┤  HTTP Client   ├────► fetch xkcd         │
+# │                          │ Wasm Client    │                         │
+# │                          └────────────────┘                         │
+# │                                                                     │
+# └─────────────────────────────────────────────────────────────────────┘
+#
 # How does it work?
 # ------------------------------
-# This file lets you build your Application out of WebAssembly components in any
+# This OAM file lets you build your Application out of WebAssembly components in any
 # supported language. This uses three components:
-# 1. XKCD business logic - answer http request, fetch random image, serve image
-# 2. HTTP WebServer - hosted on Cosmonic, this provisions a a custom domain for you
-# 3. HTTP Client - to fetch the image
+# 1. XKCD - your "business logic" answer http request, fetch random image, serve image
+# 2. HTTP WebServer - prebuilt component, hosted on Cosmonic, this handles http & provisions a custom domain
+# 3. HTTP Client - prebuilt component, to fetch the image
 #
 # Why does this help you?
 # ------------------------------
-# Cosmonic leverages WebAssembly to reduce the boilerplate you add from app to app 
+# Cosmonic leverages WebAssembly to reduce the boilerplate you copy from app to app. 
 # Writing less code means mantaining less code.
 # Each component runs in a secure deny-by-default WebAssembly Sandbox
+# Components can be instantly auto-scaled quickly from 0 to 10,000's quickly
 #
 # Where does it run?
 # ------------------------------
-# Each component can be scheduled to run one or _more_ times across your infra
+# Each component can be scheduled to run one or _more_ times across your infrastructure
 # using labels or other features you can increase replicas for reliability, availability, or performance.
 # See Getting Started for More:
 # https://cosmonic.com/docs
