@@ -1,8 +1,61 @@
-# This is a full example of how to run the xkcd actor and http client on actor
-# remote "stargate" host with an exposed with an HTTP server on Cosmonic.
-# This example leverages wadm: https://github.com/wasmCloud/wadm/tree/main/wadm.
+# This is Part 2 of a series
+# Please see Part 1, Running this only on Cosmonic:
+# https://github.com/cosmonic/awesome-cosmonic/blob/main/xkcdgenerator/xkcd-generator-cosmonic.wadm
 #
-# Components are started on Cosmonic and startgate host(s).  See other examples for different scenarios.
+# Pre-requisites:
+# The app you are about to deploy requires a second node connected and will run your app
+# across both nodes.
+# Add one up on your machine or the cloud with our CLI and `cosmo up`
+#
+# Instructions:
+# https://cosmonic.com/docs/quickstart#2-running-the-same-application-split-between-the-cloud-and-your-machine
+#
+# ┌────────────────────────────────────────────────────┐
+# │                                                    │     Internet
+# │  Your Constellation                                │
+# │  ┌──────────────────────────────────────────────┐  │
+# │  │                                              │  │   ┌───────────┐
+# │  │   Hosted on Cosmonic     ┌────────────────┐  │  │   │   Web     │
+# │  │                          │                │◄─┼──┼───┤  Browser  │
+# │  │                      ┌───┤  HTTP Server   │  │  │   │           │
+# │  │                      │   │ Wasm Component ├──┼──┼──►│   /\_/\   │
+# │  │                      │   └────────────────┘  │  │   │  ( o.o )  │
+# │  │                      │                       │  │   │   > ^ <   │
+# │  └──────────────────────┼───────────────────────┘  │   └───────────┘
+# │                         │                          │
+# │  ┌──────────────────────┼───────────────────────┐  │
+# │  │                      │                       │  │
+# │  │   Hosted on          │                       │  │    ┌──────────┐
+# │  │   Your Device        │                       │  │    │  Fetch   │
+# │  │  ┌─────────────────┐ │   ┌────────────────┐  │  │    │   XKCD   │
+# │  │  │    XKCD App     ├─┴───┤  HTTP Client   ├──┼──┼───►│          │
+# │  │  │  ( Your Code )  │     │ Wasm Client    │  │  │    │     o    │
+# │  │  └─────────────────┘     └────────────────┘  │  │    │    /|\   │
+# │  │                                              │  │    │    / \   │
+# │  └──────────────────────────────────────────────┘  │    └──────────┘
+# │                                                    │
+# └────────────────────────────────────────────────────┘
+#
+# How does it work?
+# ------------------------------
+# As before we have our three Wasm Components, each running in a seperate sandbox.
+# With out changing our WebAssembly Components, we can modify our application topology.
+# This is a simple example, but we could run more copies
+#
+# Why does this help you?
+# ------------------------------
+# It is now trivial to build applications that span clouds, edges, or devices
+# Applications can have additional redundancy, availability, and performance by design
+#
+# Where does it run?
+# ------------------------------
+# In the OAM file below you can see the use of labels like " stargate: 'true' " to tell the app where 
+# to deploy components. This application is using a "spreadscaler" which means that if multiple hosts
+# match, it will choose one. If you instead used a "daemonscaler" ALL hosts that matched those labels
+# would get the configuration
+#
+# See Getting Started for More:
+# https://cosmonic.com/docs
 
 apiVersion: core.oam.dev/v1beta1
 kind: Application
