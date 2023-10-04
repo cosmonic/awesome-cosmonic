@@ -88,6 +88,10 @@ spec:
     - name: httpserver
       properties:
         contract: wasmcloud:httpserver
+#
+# This webserver integrates with AWS on Cosmonic; you could use a local HTTP Web Server
+#   deployed on the remote host instead of, or in addition to, this one
+#
         image: cosmonic.azurecr.io/httpserver_wormhole:0.5.4
       traits:
         - properties:
