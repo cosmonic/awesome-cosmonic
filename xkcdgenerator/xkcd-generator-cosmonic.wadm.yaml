@@ -45,8 +45,8 @@ apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
   annotations:
-    description: wasmCloud XKCD Example
-    version: v1.1-cosmonic-xkcd
+    description: wasmCloud XKCD Example (Cosmonic Managed)
+    version: v1.0.0-managed
   name: xkcd
 spec:
   components:
@@ -56,7 +56,7 @@ spec:
 # Source for this image: https://github.com/cosmonic/awesome-cosmonic/blob/main/xkcdgenerator/src/lib.rs
 # With Cosmonic developers are responsible for their business logic, leveraging WebAssembly Components
 #
-        image: ghcr.io/liamrandall/xkcd:0.3.0.5
+        image: cosmonic.azurecr.io/xkcdgenerator:0.1.0
       traits:
         - properties:
             replicas: 1
