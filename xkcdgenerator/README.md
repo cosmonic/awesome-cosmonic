@@ -2,7 +2,7 @@
 
 Click on the button below to launch the XKCD Generator on Cosmonic Now:
 
-[![Deploy on Cosmonic](https://cosmonic.com/badge/deploy.svg)](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-cosmonic.wadm)
+[![Deploy on Cosmonic](https://cosmonic.com/badge/deploy.svg)](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-cosmonic.wadm.yaml)
 
 The XKCD image generator application is a simple HTTP application that randomly produces random XKCD comics on demand. It illustrates how to build a fully functioning application with a single actor and a few capability providers. You can find the inspiration and architecture diagram for this application in the [Cosmonic documentation](https://cosmonic.com/docs/to-build/image-generator#architecture-and-design).
 
