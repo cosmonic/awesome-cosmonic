@@ -61,14 +61,14 @@ apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
   annotations:
-    description: wasmCloud XKCD Example
-    version: v1-stargate
+    description: wasmCloud XKCD Example (Stargate Hosted)
+    version: v1.0.0-stargate
   name: xkcd
 spec:
   components:
     - name: xkcd
       properties:
-        image: wasmcloud.azurecr.io/xkcd:0.1.7
+        image: cosmonic.azurecr.io/xkcdgenerator:0.1.0
       traits:
         - properties:
             replicas: 1

@@ -3,10 +3,10 @@ Awesome projects and source code for the [Things To Build](https://cosmonic.com/
 
 | Deployment  | Link | Topology |
 | ------------- | ------------- | ------------- |
-| Hello World on Cosmonic  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/hello-world/hello-cosmonic.wadm) | This example will deploy Hello World actor and HTTP Server Provider all on Cosmonic.  |
-| Hello World on Stargate  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/hello-world/hello-stargate.wadm) | This example will deploy Hello World on a remote stargate node, and the HTTP Server Provider on Cosmonic. In order for this manifest to work you will need at least one stargate host deployed.  |
-| XKCD Generator on Cosmonic  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-cosmonic.wadm) | This example will deploy the XKCD actor, HTTP Client Provider, and HTTP Server Provider all on Cosmonic.  |
-| XKCD Generator on Stargate  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-stargate.wadm) | This example will deploy the XKCD actor & HTTP Client Provider on a remote stargate node, and the HTTP Server Provider on Cosmonic. In order for this manifest to work you will need at least one stargate host deployed.  |
+| Hello World on Cosmonic  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/hello-world/hello-cosmonic.wadm.yaml) | This example will deploy Hello World actor and HTTP Server Provider all on Cosmonic.  |
+| Hello World on Stargate  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/hello-world/hello-stargate.wadm.yaml) | This example will deploy Hello World on a remote stargate node, and the HTTP Server Provider on Cosmonic. In order for this manifest to work you will need at least one stargate host deployed.  |
+| XKCD Generator on Cosmonic  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-cosmonic.wadm.yaml) | This example will deploy the XKCD actor, HTTP Client Provider, and HTTP Server Provider all on Cosmonic.  |
+| XKCD Generator on Stargate  | [<img src="https://cosmonic.com/badge/deploy.svg" alt="Deploy on Cosmonic" width="400">](https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-stargate.wadm.yaml) | This example will deploy the XKCD actor & HTTP Client Provider on a remote stargate node, and the HTTP Server Provider on Cosmonic. In order for this manifest to work you will need at least one stargate host deployed.  |
 
 
 # How does it work?
@@ -32,9 +32,9 @@ You can define your own labels and leverage them to _manage_ your application.  
 ## Application Version Control
 Using the above manifests you can deploy multiple versions of your application and easily switch between different deployment topologies. Many of the applications have the same name, such as ```xkcd``` and different ```versions```. On Cosmonic, find the controls under Applications --> App --> Versions:
 
-![Cosmonic Applications Version Control Screen Shot](./img/cosmonic-applications-versions.png)
+![Cosmonic Applications Version Control Screen Shot](./.assets/cosmonic-applications-versions.png)
 
 If you inspect two different versions of an application manifest you can see how the different tags change the application topology. In the above example for the ```xkcd``` Application you can see two different versions:  [v1-cosmonic](./xkcdgenerator/xkcd-generator-cosmonic.wadm) and [v1-stargate](./xkcdgenerator/xkcd-generator-stargate.wadm). As you can see below, the two key differences are the ```version:``` tag and then the tags under a components ```requirements:```.  You can see we direct WADM to deploy the components to the stargate hosts using the ```stargate: 'true'``` tag; it is commented out but I could further direct this component by using a tag such as ```hostcore.os: macos```. 
 
 
-![Cosmonic Applications Version Control Screen Shot](./img/wadm-diff-xkcd-cosmonic-and-stargate.png)
+![Cosmonic Applications Version Control Screen Shot](./.assets/wadm-diff-xkcd-cosmonic-and-stargate.png)
