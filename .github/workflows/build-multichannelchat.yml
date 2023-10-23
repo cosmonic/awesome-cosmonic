@@ -14,10 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         working-directory:
-          - multi-channel-chat/api-gateway
+          - multi-channel-chat/apigateway
           - multi-channel-chat/chatlog
-          - multi-channel-chat/http-channel
-          - multi-channel-chat/nats-channel
+          - multi-channel-chat/httpchannel
+          - multi-channel-chat/natschannel
     steps:
       - uses: actions/checkout@v3
       - name: Add wasm32-unknown-unknown

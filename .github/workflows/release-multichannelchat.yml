@@ -16,37 +16,31 @@ jobs:
       fail-fast: false
       matrix:
         working-directory:
-          - multi-channel-chat/api-gateway
+          - multi-channel-chat/apigateway
           - multi-channel-chat/chatlog
-          - multi-channel-chat/http-channel
-          - multi-channel-chat/nats-channel
+          - multi-channel-chat/httpchannel
+          - multi-channel-chat/natschannel
         include:
-          - working-directory: multi-channel-chat/api-gateway
-            artifact-name: api-gateway
+          - working-directory: multi-channel-chat/apigateway
+            artifact-name: apigateway
+            wash-key: AWESOME_COSMONIC_MCC_APIGATEWAY_KEY
           - working-directory: multi-channel-chat/chatlog
             artifact-name: chatlog
-          - working-directory: multi-channel-chat/http-channel
-            artifact-name: http-channel
-          - working-directory: multi-channel-chat/nats-channel
-            artifact-name: nats-channel
+            wash-key: AWESOME_COSMONIC_MCC_CHATLOG_KEY
+          - working-directory: multi-channel-chat/httpchannel
+            artifact-name: httpchannel
+            wash-key: AWESOME_COSMONIC_MCC_HTTPCHANNEL_KEY
+          - working-directory: multi-channel-chat/natschannel
+            artifact-name: natschannel
+            wash-key: AWESOME_COSMONIC_MCC_NATSCHANNEL_KEY
     steps:
       - uses: actions/checkout@v3
       - uses: wasmcloud/common-actions/install-wash@main
       - name: Add wasm32-unknown-unknown
         run: rustup target add wasm32-unknown-unknown
 
-      - name: Set wash subject key (api-gateway)
-        if: ${{ matrix.artifact-name == 'api-gateway' }}
-        run: echo "WASH_SUBJECT_KEY=${{ secrets.AWESOME_COSMONIC_MCC_APIGATEWAY_KEY }}" > $GITHUB_ENV
-      - name: Set wash subject key (chatlog)
-        if: ${{ matrix.artifact-name == 'chatlog' }}
-        run: echo "WASH_SUBJECT_KEY=${{ secrets.AWESOME_COSMONIC_MCC_CHATLOG_KEY }}" > $GITHUB_ENV
-      - name: Set wash subject key (http-channel)
-        if: ${{ matrix.artifact-name == 'http-channel' }}
-        run: echo "WASH_SUBJECT_KEY=${{ secrets.AWESOME_COSMONIC_MCC_HTTPCHANNEL_KEY }}" > $GITHUB_ENV
-      - name: Set wash subject key (nats-channel)
-        if: ${{ matrix.artifact-name == 'nats-channel' }}
-        run: echo "WASH_SUBJECT_KEY=${{ secrets.AWESOME_COSMONIC_MCC_NATSCHANNEL_KEY }}" > $GITHUB_ENV
+      - name: Set wash subject key
+        run: echo "WASH_SUBJECT_KEY=${{ secrets[matrix.wash-key] }}" > $GITHUB_ENV
 
       - name: Build and sign wasmCloud actor
         env:
@@ -68,19 +62,19 @@ jobs:
       fail-fast: false
       matrix:
         working-directory:
-          - multi-channel-chat/api-gateway
+          - multi-channel-chat/apigateway
           - multi-channel-chat/chatlog
-          - multi-channel-chat/http-channel
-          - multi-channel-chat/nats-channel
+          - multi-channel-chat/httpchannel
+          - multi-channel-chat/natschannel
         include:
-          - working-directory: multi-channel-chat/api-gateway
-            artifact-name: api-gateway
+          - working-directory: multi-channel-chat/apigateway
+            artifact-name: apigateway
           - working-directory: multi-channel-chat/chatlog
             artifact-name: chatlog
-          - working-directory: multi-channel-chat/http-channel
-            artifact-name: http-channel
-          - working-directory: multi-channel-chat/nats-channel
-            artifact-name: nats-channel
+          - working-directory: multi-channel-chat/httpchannel
+            artifact-name: httpchannel
+          - working-directory: multi-channel-chat/natschannel
+            artifact-name: natschannel
     steps:
       - uses: actions/checkout@v3
       - uses: wasmcloud/common-actions/install-wash@main
@@ -94,21 +88,15 @@ jobs:
           echo "actor-name=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[].name')" >> $GITHUB_ENV
         working-directory: ${{ matrix.working-directory }}
       - name: Determine actor version
-        if: startswith(github.ref, 'refs/tags/') # Only run on tag push
         run: |
           echo "actor-version=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[].version')" >> $GITHUB_ENV
-        working-directory: ${{ matrix.working-directory }}
-      - name: Determine actor version (main)
-        if: ${{ !startswith(github.ref, 'refs/tags/') }}
-        run: |
-          echo "actor-version=latest" >> $GITHUB_ENV
         working-directory: ${{ matrix.working-directory }}
       - name: Push actor to AzureCR
         uses: wasmcloud/common-actions/oci-artifact-release@main
         with:
           artifact-path: ${{ matrix.working-directory }}/build/${{ env.actor-name }}_s.wasm
-          oci-url: ${{ secrets.AZURECR_PUSH_URL }}   
-          oci-repository: ${{ env.actor-name }}
+          oci-url: ${{ secrets.AZURECR_PUSH_URL }}
+          oci-repository: mcc_${{ env.actor-name }}
           oci-version: ${{ env.actor-version }}
           oci-username: ${{ secrets.COSMONIC_AZURECR_PUSH_USER }}
           oci-password: ${{ secrets.COSMONIC_AZURECR_PUSH_PASSWORD }}
