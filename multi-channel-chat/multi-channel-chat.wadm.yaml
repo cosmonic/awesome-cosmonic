@@ -16,16 +16,16 @@ spec:
     - name: apigateway
       type: actor
       properties:
-        image: cosmonic.azurecr.io/mcc_apigateway:0.1.0
+        image: ghcr.io/cosmonic/mcc_apigateway:0.1.0
       traits:
         - type: spreadscaler
           properties:
             replicas: 1
-    
+
     - name: chatlog
       type: actor
       properties:
-        image: cosmonic.azurecr.io/mcc_chatlog:0.1.0
+        image: ghcr.io/cosmonic/mcc_chatlog:0.1.0
       traits:
         - type: spreadscaler
           properties:
@@ -37,7 +37,7 @@ spec:
     - name: httpchannel
       type: actor
       properties:
-        image: cosmonic.azurecr.io/mcc_httpchannel:0.1.0
+        image: ghcr.io/cosmonic/mcc_httpchannel:0.1.0
       traits:
         - type: spreadscaler
           properties:
@@ -45,11 +45,11 @@ spec:
         - type: linkdef
           properties:
             target: httpserver
-    
+
     - name: natschannel
       type: actor
       properties:
-        image: cosmonic.azurecr.io/mcc_natschannel:0.1.0
+        image: ghcr.io/cosmonic/mcc_natschannel:0.1.0
       traits:
         - type: spreadscaler
           properties:
@@ -62,7 +62,7 @@ spec:
       type: capability
       properties:
         contract: wasmcloud:httpserver
-        image: cosmonic.azurecr.io/httpserver_wormhole:0.5.4
+        image: cosmonic.azurecr.io/httpserver_wormhole:0.6.2
       traits:
         - type: spreadscaler
           properties:
@@ -70,13 +70,13 @@ spec:
             spread:
               - name: wormholespread
                 requirements:
-                  cosmonic_managed: 'true'
+                  cosmonic_managed: "true"
 
     - name: keyvalue
       type: capability
       properties:
         contract: wasmcloud:keyvalue
-        image: cosmonic.azurecr.io/builtin_keyvalue:0.2.4
+        image: cosmonic.azurecr.io/builtin_keyvalue:0.2.5
       traits:
         - type: spreadscaler
           properties:
@@ -84,13 +84,13 @@ spec:
             spread:
               - name: kvspread
                 requirements:
-                  cosmonic_managed: 'true'
+                  cosmonic_managed: "true"
 
     - name: messaging
       type: capability
       properties:
         contract: wasmcloud:messaging
-        image: wasmcloud.azurecr.io/nats_messaging:0.17.2
+        image: wasmcloud.azurecr.io/nats_messaging:0.17.4
       traits:
         - type: spreadscaler
           properties:
