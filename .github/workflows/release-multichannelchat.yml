@@ -95,8 +95,8 @@ jobs:
         uses: wasmcloud/common-actions/oci-artifact-release@main
         with:
           artifact-path: ${{ matrix.working-directory }}/build/${{ env.actor-name }}_s.wasm
-          oci-url: ${{ secrets.AZURECR_PUSH_URL }}
+          oci-url: ${{ secrets.GHCR_PUSH_URL }}
           oci-repository: mcc_${{ env.actor-name }}
           oci-version: ${{ env.actor-version }}
-          oci-username: ${{ secrets.COSMONIC_AZURECR_PUSH_USER }}
-          oci-password: ${{ secrets.COSMONIC_AZURECR_PUSH_PASSWORD }}
+          oci-username: ${{ github.actor }}
+          oci-password: ${{ secrets.GITHUB_TOKEN }}
