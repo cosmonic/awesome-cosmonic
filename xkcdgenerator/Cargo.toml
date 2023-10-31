@@ -1,7 +1,7 @@
 [package]
 name = "xkcdgenerator"
-version = "0.1.0"
-authors = [ "Cosmonic Team" ]
+version = "0.2.0"
+authors = ["Cosmonic Team"]
 edition = "2021"
 
 [lib]
@@ -16,6 +16,8 @@ wasmbus-rpc = "0.14"
 wasmcloud-interface-httpserver = "0.11"
 wasmcloud-interface-numbergen = "0.10"
 wasmcloud-interface-httpclient = "0.10"
+mime_guess = "2.0.4"
+rust-embed = "8.0.0"
 
 [profile.release]
 # Optimize for small code size

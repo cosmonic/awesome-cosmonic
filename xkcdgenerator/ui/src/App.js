@@ -49,31 +49,42 @@ function App() {
           </VStack>
         </Grid>
         <a href="https://github.com/cosmonic/awesome-cosmonic/tree/main/xkcdgenerator" target="_blank" rel="noreferrer">
-        <Image
-          src="Cosmonic.Logo-Hrztl_Color.svg"  // Update with the correct path
-          alt="Cosmonic Logo"
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            right: 0,
-            padding: '8px',
-            width: '18rem'
-          }}
-        />
+          <Image
+            src="Cosmonic.Logo-Hrztl_Color.svg"  // Update with the correct path
+            alt="Cosmonic Logo"
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              right: 0,
+              padding: '8px',
+              width: '18rem'
+            }}
+          />
         </a>
-        <a href="https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-cosmonic.wadm" target="_blank" rel="noreferrer">
-        <Image
-          src="deploy-xkcd-on-cosmonic.png"  // Update with the correct path
-          alt="Deploy XKCD on Cosmonic Now"
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            padding: '8px',
-            width: '18rem'
-          }}
-        />
-        </a>
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          display: 'flex',
+          flexDirection: 'column',
+        }}>
+          <b><h1>Keep going!</h1></b>
+          <a href="https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-cosmonic.wadm.yaml" target="_blank" rel="noreferrer">
+            <Button margin="4px" width="100%" textAlign="left" textColor="#685BC7">
+              Step 1: Deploy on Cosmonic
+            </Button>
+          </a>
+          <a href="https://new.cosmonic.app/?yaml=https://raw.githubusercontent.com/cosmonic/awesome-cosmonic/main/xkcdgenerator/xkcd-generator-stargate.wadm.yaml" target="_blank" rel="noreferrer">
+            <Button margin="4px" width="100%" textAlign="left" textColor="#685BC7">
+              Step 2. Distribute to your Edge
+            </Button>
+          </a>
+          <a href="https://cosmonic.com/docs/getting-started/makeityourown" target="_blank" rel="noreferrer">
+            <Button margin="4px" width="100%" textAlign="left" textColor="#685BC7">
+              Step 3. Make it Your Own
+            </Button>
+          </a>
+        </div>
       </Box>
     </ChakraProvider >
   );
