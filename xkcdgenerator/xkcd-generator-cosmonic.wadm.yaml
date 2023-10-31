@@ -1,6 +1,6 @@
 # XKCD Part 1 - Running on Cosmonic PaaS
 # Cosmonic PaaS lets you orchestrate WebAssembly Components on any cloud or edge using CNCF wasmCloud.
-# 
+#
 # The app you are about to deploy:
 # ┌────────────────────────────────────────────────┐      Internet
 # │                                                │    ┌───────────┐
@@ -27,7 +27,7 @@
 #
 # Why does this help you?
 # ------------------------------
-# Using WebAssembly components reduces the boilerplate you copy from app to app. 
+# Using WebAssembly components reduces the boilerplate you copy from app to app.
 # Writing less code means mantaining less code.
 # Each component runs in a secure deny-by-default WebAssembly Sandbox
 # Components can be run locally, or remotely - closer to users
@@ -45,17 +45,17 @@ apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
   annotations:
-    description: wasmCloud XKCD Example (Cosmonic Managed)
-    version: v1.0.0-managed
+    description: XKCD Example (Cosmonic Cloud)
+    version: v1.0.0-cosmonic-cloud
   name: xkcd
 spec:
   components:
     - name: xkcd
       properties:
-#
-# Source for this image: https://github.com/cosmonic/awesome-cosmonic/blob/main/xkcdgenerator/src/lib.rs
-# With Cosmonic developers are responsible for their business logic, leveraging WebAssembly Components
-#
+        #
+        # Source for this image: https://github.com/cosmonic/awesome-cosmonic/blob/main/xkcdgenerator/src/lib.rs
+        # With Cosmonic developers are responsible for their business logic, leveraging WebAssembly Components
+        #
         image: cosmonic.azurecr.io/xkcdgenerator:0.1.0
       traits:
         - properties:
@@ -63,7 +63,7 @@ spec:
             spread:
               - name: oncosmonic
                 requirements:
-                  cosmonic_managed: 'true'
+                  cosmonic_managed: "true"
           type: spreadscaler
         - properties:
             target: httpserver
@@ -82,7 +82,7 @@ spec:
             spread:
               - name: oncosmonic
                 requirements:
-                  cosmonic_managed: 'true'
+                  cosmonic_managed: "true"
           type: spreadscaler
       type: capability
     - name: httpclient
@@ -95,6 +95,6 @@ spec:
             spread:
               - name: oncosmonic
                 requirements:
-                  cosmonic_managed: 'true'
+                  cosmonic_managed: "true"
           type: spreadscaler
       type: capability

@@ -38,7 +38,7 @@
 #
 # How does it work?
 # ------------------------------
-# As before we have our three Wasm Components, each running in a seperate sandbox.
+# As before we have our three Wasm Components, each running in a separate sandbox.
 # With out changing our WebAssembly Components, we can modify our application topology.
 # This is a simple example, but we could run more copies
 #
@@ -49,7 +49,7 @@
 #
 # Where does it run?
 # ------------------------------
-# In the OAM file below you can see the use of labels like " stargate: 'true' " to tell the app where 
+# In the OAM file below you can see the use of labels like " stargate: 'true' " to tell the app where
 # to deploy components. This application is using a "spreadscaler" which means that if multiple hosts
 # match, it will choose one. If you instead used a "daemonscaler" ALL hosts that matched those labels
 # would get the configuration
@@ -61,8 +61,8 @@ apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
   annotations:
-    description: wasmCloud XKCD Example (Stargate Hosted)
-    version: v1.0.0-stargate
+    description: XKCD Example (Edge Hosted)
+    version: v1.0.0-edge
   name: xkcd
 spec:
   components:
@@ -75,8 +75,8 @@ spec:
             spread:
               - name: stargate
                 requirements:
-#                  hostcore.os: macos
-                  stargate: 'true'
+                  #                  hostcore.os: macos
+                  stargate: "true"
           type: spreadscaler
         - properties:
             target: httpserver
@@ -88,10 +88,10 @@ spec:
     - name: httpserver
       properties:
         contract: wasmcloud:httpserver
-#
-# This webserver integrates with AWS on Cosmonic; you could use a local HTTP Web Server
-#   deployed on the remote host instead of, or in addition to, this one
-#
+        #
+        # This webserver integrates with AWS on Cosmonic; you could use a local HTTP Web Server
+        #   deployed on the remote host instead of, or in addition to, this one
+        #
         image: cosmonic.azurecr.io/httpserver_wormhole:0.5.4
       traits:
         - properties:
@@ -99,7 +99,7 @@ spec:
             spread:
               - name: oncosmonic
                 requirements:
-                  cosmonic_managed: 'true'
+                  cosmonic_managed: "true"
           type: spreadscaler
       type: capability
     - name: httpclient
@@ -112,7 +112,7 @@ spec:
             spread:
               - name: stargate
                 requirements:
-#                  hostcore.os: macos
-                  stargate: 'true'
+                  #                  hostcore.os: macos
+                  stargate: "true"
           type: spreadscaler
       type: capability
