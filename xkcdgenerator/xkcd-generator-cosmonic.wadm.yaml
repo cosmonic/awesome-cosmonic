@@ -56,7 +56,7 @@ spec:
         # Source for this image: https://github.com/cosmonic/awesome-cosmonic/blob/main/xkcdgenerator/src/lib.rs
         # With Cosmonic developers are responsible for their business logic, leveraging WebAssembly Components
         #
-        image: cosmonic.azurecr.io/xkcdgenerator:0.1.0
+        image: ghcr.io/cosmonic/xkcdgenerator:0.2.0
       traits:
         - properties:
             replicas: 1
@@ -75,7 +75,7 @@ spec:
     - name: httpserver
       properties:
         contract: wasmcloud:httpserver
-        image: cosmonic.azurecr.io/httpserver_wormhole:0.5.4
+        image: cosmonic.azurecr.io/httpserver_wormhole:0.6.2
       traits:
         - properties:
             replicas: 1
@@ -88,7 +88,7 @@ spec:
     - name: httpclient
       properties:
         contract: wasmcloud:httpclient
-        image: wasmcloud.azurecr.io/httpclient:0.7.0
+        image: wasmcloud.azurecr.io/httpclient:0.8.0
       traits:
         - properties:
             replicas: 1

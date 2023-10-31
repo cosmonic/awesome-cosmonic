@@ -1,4 +1,4 @@
-# This is a full example of how to run the hello actor exposed with an HTTP server on Cosmonic. 
+# This is a full example of how to run the hello actor exposed with an HTTP server on Cosmonic.
 # This example leverages WADM running: https://github.com/wasmCloud/wadm/tree/main/wadm.
 #
 # All components are started on Cosmonic.  See other examples for different scenarios.
@@ -15,7 +15,7 @@ spec:
     - name: hello
       type: actor
       properties:
-        image: cosmonic.azurecr.io/hello:0.1.0
+        image: ghcr.io/cosmonic/hello:0.1.0
       traits:
         - type: spreadscaler
           properties:
@@ -26,13 +26,13 @@ spec:
     - name: httpserver
       properties:
         contract: wasmcloud:httpserver
-        image: cosmonic.azurecr.io/httpserver_wormhole:0.5.4
+        image: cosmonic.azurecr.io/httpserver_wormhole:0.6.2
       traits:
         - properties:
             replicas: 1
             spread:
               - name: oncosmonic
                 requirements:
-                  cosmonic_managed: 'true'
+                  cosmonic_managed: "true"
           type: spreadscaler
       type: capability

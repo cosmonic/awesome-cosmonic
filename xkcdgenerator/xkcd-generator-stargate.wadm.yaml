@@ -68,14 +68,14 @@ spec:
   components:
     - name: xkcd
       properties:
-        image: cosmonic.azurecr.io/xkcdgenerator:0.1.0
+        image: ghcr.io/cosmonic/xkcdgenerator:0.1.0
       traits:
         - properties:
             replicas: 1
             spread:
               - name: stargate
                 requirements:
-                  #                  hostcore.os: macos
+                  # hostcore.os: macos
                   stargate: "true"
           type: spreadscaler
         - properties:
@@ -92,7 +92,7 @@ spec:
         # This webserver integrates with AWS on Cosmonic; you could use a local HTTP Web Server
         #   deployed on the remote host instead of, or in addition to, this one
         #
-        image: cosmonic.azurecr.io/httpserver_wormhole:0.5.4
+        image: cosmonic.azurecr.io/httpserver_wormhole:0.6.2
       traits:
         - properties:
             replicas: 1
@@ -105,14 +105,14 @@ spec:
     - name: httpclient
       properties:
         contract: wasmcloud:httpclient
-        image: wasmcloud.azurecr.io/httpclient:0.7.0
+        image: wasmcloud.azurecr.io/httpclient:0.8.0
       traits:
         - properties:
             replicas: 1
             spread:
               - name: stargate
                 requirements:
-                  #                  hostcore.os: macos
+                  # hostcore.os: macos
                   stargate: "true"
           type: spreadscaler
       type: capability
