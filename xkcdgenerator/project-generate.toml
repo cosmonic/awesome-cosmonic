@@ -2,7 +2,9 @@
 
 raw = [
   ".github/workflows/build.yml",
-  ".github/workflows/release.yml"
+  ".github/workflows/release.yml",
+  "build/*",
+  "ui/*",
 ]
 exclude = [
   "/.idea"
