@@ -68,7 +68,7 @@ spec:
   components:
     - name: xkcd
       properties:
-        image: ghcr.io/cosmonic/xkcdgenerator:0.1.0
+        image: ghcr.io/cosmonic/xkcdgenerator:0.2.0
       traits:
         - properties:
             replicas: 1
