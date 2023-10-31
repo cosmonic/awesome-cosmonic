@@ -1,4 +1,4 @@
-name: Release KVCounter to AzureCR
+name: Release KVCounter to GHCR
 on:
   workflow_dispatch:
   push:
@@ -67,7 +67,7 @@ jobs:
         run: |
           echo "actor-version=latest" >> $GITHUB_ENV
         working-directory: ${{ env.working-directory }}/kvcounter
-      - name: Push actor to AzureCR
+      - name: Push actor to GHCR
         uses: wasmcloud/common-actions/oci-artifact-release@main
         with:
           artifact-path: ${{ env.working-directory }}/kvcounter/build/${{ env.actor-name }}_s.wasm
