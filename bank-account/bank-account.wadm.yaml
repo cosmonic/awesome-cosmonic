@@ -12,7 +12,7 @@ spec:
         image: ghcr.io/cosmonic/bankaccount_catalog:0.1.0
       traits:
         - properties:
-            replicas: 1
+            replicas: 3
             spread:
               - name: oncosmonic
                 requirements:
