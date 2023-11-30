@@ -1,7 +1,8 @@
 import { Fireworks, FireworksHandlers } from '@fireworks-js/react'
 import { useState, useEffect, useRef, FormEvent } from 'react'
 import api from '../services/ApiService'
-import { ReactComponent as Logo } from '../assets/logo.svg'
+import { ReactComponent as CosmonicLogo } from '../assets/cosmonic-logo.svg'
+import { ReactComponent as GithubLogo } from '../assets/github-logo.svg'
 import { useScreenSize } from '../hooks/useScreenSize'
 
 function App() {
@@ -47,8 +48,8 @@ function App() {
   }, [])
 
   return (
-    <div className="h-full flex flex-col items-center justify-center">
-      <div className="flex flex-col gap-2">
+    <div className="h-full grid grid-rows-[1fr,auto]">
+      <div className="flex flex-col gap-2 h-full items-center justify-center">
         <form className="flex flex-wrap gap-2" onSubmit={handleSubmit}>
           <input
             id="bucket"
@@ -67,7 +68,19 @@ function App() {
           {count}
         </h2>
       </div>
-      <Logo className="absolute p-4 bottom-0 right-0 w-48" />
+      <div className="flex justify-between w-screen p-4">
+        <div className="flex items-center">
+          <GithubLogo className="h-12 mr-4" />
+          <a
+            className="underline text-cosmonicPurple-dark"
+            href="https://github.com/cosmonic/awesome-cosmonic/tree/main/kvcounter"
+          >
+            {' '}
+            Check out the source code!{' '}
+          </a>
+        </div>
+        <CosmonicLogo className="h-12" />
+      </div>
       <Fireworks
         ref={fireworks}
         autostart={false}
